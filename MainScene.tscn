@@ -30,3 +30,10 @@ script = ExtResource("3_2b4t7")
 transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 1.1942, -12.4545)
 texture = ExtResource("1_xbbib")
 script = ExtResource("4_fkx34")
+
+[node name="slider_offset_camera" type="HSlider" parent="Crosshair"]
+offset_right = 223.0
+offset_bottom = 53.0
+step = 10.0
+tick_count = 10
+ticks_on_borders = true
