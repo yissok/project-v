@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://duj8cloekrr5s"]
+
+[ext_resource type="Texture2D" uid="uid://hp1gjwdxjblc" path="res://assets/spriites/crosshair_tonda.png" id="1_xbbib"]
+[ext_resource type="Script" path="res://CrossMain.gd" id="2_xt1r4"]
+[ext_resource type="Script" path="res://Cross2.gd" id="3_2b4t7"]
+[ext_resource type="Script" path="res://Cross3.gd" id="4_fkx34"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+
+[node name="Crosshair" type="Node3D" parent="."]
+
+[node name="CrossMain" type="Sprite3D" parent="Crosshair"]
+transform = Transform3D(0.126894, 0, 0, 0, 0.126894, 0, 0, 0, 0.126894, 0, 1.14838, -5.78773)
+texture = ExtResource("1_xbbib")
+script = ExtResource("2_xt1r4")
+
+[node name="Cross2" type="Sprite3D" parent="Crosshair"]
+transform = Transform3D(0.126894, 0, 0, 0, 0.126894, 0, 0, 0, 0.126894, 0, 1.18891, -5.16011)
+texture = ExtResource("1_xbbib")
+script = ExtResource("3_2b4t7")
+
+[node name="Cross3" type="Sprite3D" parent="Crosshair"]
+transform = Transform3D(0.126894, 0, 0, 0, 0.126894, 0, 0, 0, 0.126894, 0, 1.1942, -4.68546)
+texture = ExtResource("1_xbbib")
+script = ExtResource("4_fkx34")
