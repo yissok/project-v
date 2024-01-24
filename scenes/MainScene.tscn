@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://duj8cloekrr5s"]
+[gd_scene load_steps=25 format=3 uid="uid://duj8cloekrr5s"]
 
 [ext_resource type="Script" path="res://scripts/Crosshair.gd" id="1_m88w7"]
+[ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_vvscl"]
 [ext_resource type="Texture2D" uid="uid://coafeitxvdwwj" path="res://assets/spriites/crosshair_red.png" id="2_47rvy"]
 [ext_resource type="Script" path="res://scripts/CrossMain.gd" id="3_3lyca"]
 [ext_resource type="Texture2D" uid="uid://b38upcmu66c63" path="res://assets/spriites/crosshair_cya.png" id="4_vojde"]
@@ -12,6 +13,14 @@
 [ext_resource type="Script" path="res://scripts/timer_spawn_tile.gd" id="9_6yiwm"]
 [ext_resource type="Script" path="res://assets/models/tile_sabbia.gd" id="9_hkw4p"]
 [ext_resource type="Texture2D" uid="uid://dd7k80r34xqcw" path="res://assets/spriites/skybox_texture_256.png" id="12_os1xl"]
+[ext_resource type="Texture2D" uid="uid://7ua756832ymt" path="res://assets/spriites/ControllerStickUI_big.png" id="13_h1akc"]
+[ext_resource type="Script" path="res://scripts/ControllerStickUiBig.gd" id="14_su5nr"]
+[ext_resource type="Texture2D" uid="uid://dpvq3bdt14pfa" path="res://assets/spriites/ControllerStickUI_small.png" id="15_je1ct"]
+[ext_resource type="AudioStream" uid="uid://drtq42x3e3vrq" path="res://assets/sounds/sfx/ambience_desert.ogg" id="16_ragkr"]
+[ext_resource type="AudioStream" uid="uid://2yq2nu6k8heb" path="res://assets/sounds/sfx/gunshot.ogg" id="17_apdhj"]
+[ext_resource type="AudioStream" uid="uid://bln601nkbifuy" path="res://assets/sounds/sfx/reload1.ogg" id="18_k1kmh"]
+[ext_resource type="AudioStream" uid="uid://d2ximwfabfi0g" path="res://assets/sounds/sfx/reload2.ogg" id="19_siggk"]
+[ext_resource type="AudioStream" uid="uid://cb06yomfkokh" path="res://assets/sounds/sfx/reload3.ogg" id="20_3evoe"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gpifv"]
 panorama = ExtResource("12_os1xl")
@@ -25,6 +34,7 @@ background_mode = 2
 sky = SubResource("Sky_egxua")
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_vvscl")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0289841, 2.2512, 0.930524)
@@ -70,5 +80,30 @@ script = ExtResource("9_hkw4p")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ufbcu")
+
+[node name="ControllerStickUiBig" type="Sprite2D" parent="."]
+position = Vector2(76, 142)
+scale = Vector2(0.333333, 0.333333)
+texture = ExtResource("13_h1akc")
+script = ExtResource("14_su5nr")
+
+[node name="ControllerStickUiSmall" type="Sprite2D" parent="ControllerStickUiBig"]
+texture = ExtResource("15_je1ct")
+
+[node name="gunshot" type="AudioStreamPlayer" parent="ControllerStickUiBig"]
+stream = ExtResource("17_apdhj")
+
+[node name="reload1" type="AudioStreamPlayer" parent="ControllerStickUiBig"]
+stream = ExtResource("18_k1kmh")
+
+[node name="reload2" type="AudioStreamPlayer" parent="ControllerStickUiBig"]
+stream = ExtResource("19_siggk")
+
+[node name="reload3" type="AudioStreamPlayer" parent="ControllerStickUiBig"]
+stream = ExtResource("20_3evoe")
+
+[node name="AmbienceDesert" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_ragkr")
+volume_db = -8.667
 
 [connection signal="timeout" from="TileManager/timer_spawn_tile" to="TileManager" method="_on_timer_spawn_tile_timeout"]
