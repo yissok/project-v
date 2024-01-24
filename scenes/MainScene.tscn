@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://duj8cloekrr5s"]
+[gd_scene load_steps=16 format=3 uid="uid://duj8cloekrr5s"]
 
 [ext_resource type="Script" path="res://scripts/Crosshair.gd" id="1_m88w7"]
 [ext_resource type="Texture2D" uid="uid://coafeitxvdwwj" path="res://assets/spriites/crosshair_red.png" id="2_47rvy"]
@@ -11,6 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://b2xlvdlvs60k3" path="res://assets/models/tile_sabbia.glb" id="8_hdvsu"]
 [ext_resource type="Script" path="res://scripts/timer_spawn_tile.gd" id="9_6yiwm"]
 [ext_resource type="Script" path="res://assets/models/tile_sabbia.gd" id="9_hkw4p"]
+[ext_resource type="Texture2D" uid="uid://dd7k80r34xqcw" path="res://assets/spriites/skybox_texture_256.png" id="12_os1xl"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gpifv"]
+panorama = ExtResource("12_os1xl")
+filter = false
+
+[sub_resource type="Sky" id="Sky_egxua"]
+sky_material = SubResource("PanoramaSkyMaterial_gpifv")
+
+[sub_resource type="Environment" id="Environment_ufbcu"]
+background_mode = 2
+sky = SubResource("Sky_egxua")
 
 [node name="Node3D" type="Node3D"]
 
@@ -55,5 +67,8 @@ script = ExtResource("9_6yiwm")
 [node name="tile_sabbia" parent="TileManager" instance=ExtResource("8_hdvsu")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 script = ExtResource("9_hkw4p")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ufbcu")
 
 [connection signal="timeout" from="TileManager/timer_spawn_tile" to="TileManager" method="_on_timer_spawn_tile_timeout"]
