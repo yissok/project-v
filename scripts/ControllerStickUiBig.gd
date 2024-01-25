@@ -1,52 +1,81 @@
 extends Sprite2D
 
-var pos_y = Input.get_axis("ra_up", "ra_down")
-var pos_x = Input.get_axis("ra_left", "ra_right")
+var pos_y
+var pos_x
+var joystick
 var sparato = false
-var zona0 = false
-var zona1 = false
-var zona2 = false
+var joy_state_idle = false
+var joy_went_right = false
+var joy_went_down = false
 
-# Called when the node enters the scene tree for the first time.
+enum JoystickPosition {
+	UP_LEFT,
+	UP,
+	UP_RIGHT,
+	LEFT,
+	CENTER,
+	RIGHT,
+	DOWN_LEFT,
+	DOWN,
+	DOWN_RIGHT
+}
+
 func _ready():
-	pass # Replace with function body.
+	pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pos_y = Input.get_axis("ra_up", "ra_down")
 	pos_x = Input.get_axis("ra_left", "ra_right")
+	pos_y = Input.get_axis("ra_up", "ra_down")
+	joystick=get_joystick_position(pos_x, pos_y)
 	$ControllerStickUiSmall.position = Vector2(pos_x, pos_y)*200
-	_in_square(0.5, 0.5, 1, 1)
 	if (Input.is_action_pressed("shoot")==true) && (sparato == false):
-		_sparato()
+		_spara()
 	_ricarica()
 	pass
-	
-func _in_square(x1:float, y1:float, x2:float, y2:float):
-	if (Input.get_axis("ra_up", "ra_down") >= y1) && (Input.get_axis("ra_up", "ra_down") <= y2) && (Input.get_axis("ra_left", "ra_right")>= x1)  && (Input.get_axis("ra_left", "ra_right")<= x2):
-		return true
-		
-func _sparato():
-	sparato = true
+
+func get_joystick_position(x_input: int, y_input: int) -> JoystickPosition:
+	if x_input < 0:
+		if y_input < 0:
+			return JoystickPosition.UP_LEFT
+		elif y_input > 0:
+			return JoystickPosition.DOWN_LEFT
+		else:
+			return JoystickPosition.LEFT
+	elif x_input > 0:
+		if y_input < 0:
+			return JoystickPosition.UP_RIGHT
+		elif y_input > 0:
+			return JoystickPosition.DOWN_RIGHT
+		else:
+			return JoystickPosition.RIGHT
+	else:
+		if y_input < 0:
+			return JoystickPosition.UP
+		elif y_input > 0:
+			return JoystickPosition.DOWN
+		else:
+			return JoystickPosition.CENTER
+
+func _spara():
 	$gunshot.play()
+	sparato = true
 	print("Sparato")
 	pass
-		
+
 func _ricarica():
-	if (sparato==true) && (_in_square(-0.2, -0.2, 0.2, 0.2) == true):
-		zona0 = true
-	if (zona0== true) && (_in_square(0.6, -0.2, 1, 0.2) == true):
-		zona1 = true
-		zona0 = false
+	if (sparato==true) && (joystick == JoystickPosition.CENTER):
+		joy_state_idle = true
+	if (joy_state_idle== true) && (joystick == JoystickPosition.RIGHT):
+		joy_went_right = true
+		joy_state_idle = false
 		$reload1.play()
-	if (zona1== true) && (_in_square(-0.2, 0.6, 0.2, 1) == true):
-		zona2 = true
-		zona1 = false
+	if (joy_went_right== true) && (joystick == JoystickPosition.DOWN):
+		joy_went_down = true
+		joy_went_right = false
 		$reload2.play()
-	if (zona2== true) && (_in_square(-0.2, -0.2, 0.2, 0.2) == true):
+	if (joy_went_down== true) && (joystick == JoystickPosition.CENTER):
 		sparato = false
-		zona2 = false
+		joy_went_down = false
 		$reload3.play()
 		print("Ricaricato")
 	pass
