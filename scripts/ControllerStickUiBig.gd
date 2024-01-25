@@ -6,8 +6,6 @@ var sparato = false
 var zona0 = false
 var zona1 = false
 var zona2 = false
-var sound1_played = false
-var sound2_played = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,21 +38,15 @@ func _ricarica():
 		zona0 = true
 	if (zona0== true) && (_in_square(0.6, -0.2, 1, 0.2) == true):
 		zona1 = true
-		if sound1_played == false:
-			sound1_played = true
-			$reload1.play()
+		zona0 = false
+		$reload1.play()
 	if (zona1== true) && (_in_square(-0.2, 0.6, 0.2, 1) == true):
 		zona2 = true
-		if sound2_played == false:
-			sound2_played = true
-			$reload2.play()
+		zona1 = false
+		$reload2.play()
 	if (zona2== true) && (_in_square(-0.2, -0.2, 0.2, 0.2) == true):
 		sparato = false
-		zona0 = false
-		zona1 = false
 		zona2 = false
-		sound1_played = false
-		sound2_played = false
 		$reload3.play()
 		print("Ricaricato")
 	pass
