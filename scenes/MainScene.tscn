@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://duj8cloekrr5s"]
+[gd_scene load_steps=32 format=3 uid="uid://duj8cloekrr5s"]
 
 [ext_resource type="Script" path="res://scripts/Crosshair.gd" id="1_m88w7"]
 [ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_vvscl"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dp1brf0fn6prc" path="res://assets/models/enemy1.glb" id="22_vwe2v"]
 [ext_resource type="Script" path="res://scripts/enemy1.gd" id="23_qujfw"]
 [ext_resource type="PackedScene" uid="uid://c2s7fhbl0o7e1" path="res://assets/models/bullet.glb" id="24_wu8ab"]
+[ext_resource type="Texture2D" uid="uid://cij8s4wrgm0tp" path="res://assets/models/tile_sabbia_sabbia.png" id="25_3lkod"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gpifv"]
 panorama = ExtResource("12_os1xl")
@@ -35,6 +36,24 @@ sky_material = SubResource("PanoramaSkyMaterial_gpifv")
 [sub_resource type="Environment" id="Environment_ufbcu"]
 background_mode = 2
 sky = SubResource("Sky_egxua")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.002
+volumetric_fog_emission = Color(0.858824, 0.815686, 0, 1)
+volumetric_fog_emission_energy = 0.4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_canuw"]
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_box_extents = Vector3(20, 0.1, 20)
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u16c1"]
+albedo_texture = ExtResource("25_3lkod")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_waus6"]
+material = SubResource("StandardMaterial3D_u16c1")
+size = Vector2(10, 10)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_vvscl")
@@ -43,6 +62,7 @@ script = ExtResource("1_vvscl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0289841, 2.2512, 0.930524)
 
 [node name="Crosshair" type="Node3D" parent="."]
+visible = false
 script = ExtResource("1_m88w7")
 
 [node name="CrossMain" type="Sprite3D" parent="Crosshair"]
@@ -71,6 +91,7 @@ ticks_on_borders = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -10, 10, 0)
 
 [node name="TileManager" type="Node3D" parent="."]
+visible = false
 script = ExtResource("8_7ijcc")
 
 [node name="timer_spawn_tile" type="Timer" parent="TileManager"]
@@ -115,5 +136,12 @@ script = ExtResource("23_qujfw")
 
 [node name="bullet" parent="." instance=ExtResource("24_wu8ab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92169, 3.42357, -2.2563)
+
+[node name="EmitterSand" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.83154, 0)
+amount = 4
+lifetime = 23.85
+process_material = SubResource("ParticleProcessMaterial_canuw")
+draw_pass_1 = SubResource("PlaneMesh_waus6")
 
 [connection signal="timeout" from="TileManager/timer_spawn_tile" to="TileManager" method="_on_timer_spawn_tile_timeout"]
