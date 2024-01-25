@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://duj8cloekrr5s"]
+[gd_scene load_steps=28 format=3 uid="uid://duj8cloekrr5s"]
 
 [ext_resource type="Script" path="res://scripts/Crosshair.gd" id="1_m88w7"]
 [ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_vvscl"]
@@ -21,6 +21,9 @@
 [ext_resource type="AudioStream" uid="uid://bln601nkbifuy" path="res://assets/sounds/sfx/reload1.ogg" id="18_k1kmh"]
 [ext_resource type="AudioStream" uid="uid://d2ximwfabfi0g" path="res://assets/sounds/sfx/reload2.ogg" id="19_siggk"]
 [ext_resource type="AudioStream" uid="uid://cb06yomfkokh" path="res://assets/sounds/sfx/reload3.ogg" id="20_3evoe"]
+[ext_resource type="PackedScene" uid="uid://dp1brf0fn6prc" path="res://assets/models/enemy1.glb" id="22_vwe2v"]
+[ext_resource type="Script" path="res://scripts/enemy1.gd" id="23_qujfw"]
+[ext_resource type="PackedScene" uid="uid://c2s7fhbl0o7e1" path="res://assets/models/bullet.glb" id="24_wu8ab"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gpifv"]
 panorama = ExtResource("12_os1xl")
@@ -105,5 +108,12 @@ stream = ExtResource("20_3evoe")
 [node name="AmbienceDesert" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_ragkr")
 volume_db = -8.667
+
+[node name="enemy1" parent="." instance=ExtResource("22_vwe2v")]
+transform = Transform3D(1.3221, 0, 0, 0, 1.3221, 0, 0, 0, 1.3221, -3.50391, 3.95025, -15.0244)
+script = ExtResource("23_qujfw")
+
+[node name="bullet" parent="." instance=ExtResource("24_wu8ab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92169, 3.42357, -2.2563)
 
 [connection signal="timeout" from="TileManager/timer_spawn_tile" to="TileManager" method="_on_timer_spawn_tile_timeout"]
