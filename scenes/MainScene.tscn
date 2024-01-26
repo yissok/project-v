@@ -62,7 +62,7 @@ size = Vector2(10, 10)
 script = ExtResource("1_vvscl")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0289841, 2.2512, 0.930524)
+transform = Transform3D(1.055, 0, 0, 0, 1.03195, -0.219347, 0, 0.219347, 1.03195, -0.029, 4.211, 0.931)
 
 [node name="Crosshair" type="Node3D" parent="."]
 script = ExtResource("1_m88w7")
