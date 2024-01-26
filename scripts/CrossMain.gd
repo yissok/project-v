@@ -2,7 +2,7 @@ extends Sprite3D
 
 var pos_y = Input.get_axis("la_up", "la_down")
 var pos_x = Input.get_axis("la_left", "la_right")
-var velocità = 0.16
+var velocità = 1.00
 
 func _ready():
 	pass

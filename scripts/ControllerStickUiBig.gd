@@ -8,6 +8,8 @@ var joy_state_idle = false
 var joy_went_right = false
 var joy_went_down = false
 
+signal shot_fired
+
 enum JoystickPosition {
 	UP_LEFT,
 	UP,
@@ -59,12 +61,15 @@ func get_joystick_position(x_input: int, y_input: int) -> JoystickPosition:
 func _spara():
 	$gunshot.play()
 	sparato = true
+	self.emit_signal("shot_fired")
 	print("Sparato")
 	pass
 
 func _ricarica():
 	if (sparato==true) && (joystick == JoystickPosition.CENTER):
 		joy_state_idle = true
+		sparato = false ## WILL REMOVE THESE DW, JUST TO EASE TESTING
+		joy_went_down = false ## WILL REMOVE THESE DW, JUST TO EASE TESTING
 	if (joy_state_idle== true) && (joystick == JoystickPosition.RIGHT):
 		joy_went_right = true
 		joy_state_idle = false

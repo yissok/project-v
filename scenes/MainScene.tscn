@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://duj8cloekrr5s"]
+[gd_scene load_steps=36 format=3 uid="uid://duj8cloekrr5s"]
 
 [ext_resource type="Script" path="res://scripts/Crosshair.gd" id="1_m88w7"]
 [ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_vvscl"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scripts/TileManager.gd" id="8_7ijcc"]
 [ext_resource type="PackedScene" uid="uid://b2xlvdlvs60k3" path="res://assets/models/tile_sabbia.glb" id="8_hdvsu"]
 [ext_resource type="Script" path="res://scripts/timer_spawn_tile.gd" id="9_6yiwm"]
-[ext_resource type="Script" path="res://assets/models/tile_sabbia.gd" id="9_hkw4p"]
+[ext_resource type="Script" path="res://scripts/tile_sabbia.gd" id="9_hkw4p"]
 [ext_resource type="Texture2D" uid="uid://dd7k80r34xqcw" path="res://assets/spriites/skybox_texture_256.png" id="12_os1xl"]
 [ext_resource type="Texture2D" uid="uid://7ua756832ymt" path="res://assets/spriites/ControllerStickUI_big.png" id="13_h1akc"]
 [ext_resource type="Script" path="res://scripts/ControllerStickUiBig.gd" id="14_su5nr"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://scripts/enemy1.gd" id="23_qujfw"]
 [ext_resource type="PackedScene" uid="uid://c2s7fhbl0o7e1" path="res://assets/models/bullet.glb" id="24_wu8ab"]
 [ext_resource type="Texture2D" uid="uid://cij8s4wrgm0tp" path="res://assets/models/tile_sabbia_sabbia.png" id="25_3lkod"]
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="25_ge00l"]
 [ext_resource type="PackedScene" uid="uid://81sgpru88tve" path="res://assets/models/moon.glb" id="26_l0bdk"]
 [ext_resource type="PackedScene" uid="uid://b3mnnuo8oxw1k" path="res://assets/models/SpaceStation.glb" id="27_xk5qj"]
 [ext_resource type="PackedScene" uid="uid://1o46uj5ocbdi" path="res://assets/placeholder/roccia_2.glb" id="29_52dj8"]
@@ -62,7 +63,7 @@ size = Vector2(10, 10)
 script = ExtResource("1_vvscl")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0289841, 2.2512, 0.930524)
+transform = Transform3D(1.055, 0, 0, 0, 1.03195, -0.219347, 0, 0.219347, 1.03195, -0.029, 4.211, 0.931)
 
 [node name="Crosshair" type="Node3D" parent="."]
 script = ExtResource("1_m88w7")
@@ -86,6 +87,7 @@ script = ExtResource("7_c2p25")
 offset_right = 223.0
 offset_bottom = 53.0
 step = 10.0
+value = 20.0
 tick_count = 10
 ticks_on_borders = true
 
@@ -137,8 +139,10 @@ script = ExtResource("23_qujfw")
 
 [node name="bullet" parent="." instance=ExtResource("24_wu8ab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92169, 3.42357, -2.2563)
+script = ExtResource("25_ge00l")
 
 [node name="AmbientePlaceholder" type="Node3D" parent="."]
+visible = false
 
 [node name="moon" parent="AmbientePlaceholder" instance=ExtResource("26_l0bdk")]
 transform = Transform3D(-1.08057, 0, -4.03274, 0, 4.175, 0, 4.03274, 0, -1.08057, -37.66, 24.486, -66.347)

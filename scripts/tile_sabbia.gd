@@ -1,6 +1,6 @@
 extends Node3D
 
-var speed = 0.05
+var speed = 0.25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

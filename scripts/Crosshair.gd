@@ -14,5 +14,17 @@ func moveCrossHair(direction, node, offset):
 	
 	offset_cam = Vector3(0,0, float($slider_offset_camera.value/-100))
 	
-	var vec_dir = ($"CrossMain".position -  ($"../Camera3D".position + offset_cam))*offset
-	node.position = vec_dir + ($"../Camera3D".position + offset_cam)
+	var ori_to_target = (get_target() -  (get_ori() + offset_cam))*offset
+	node.position = ori_to_target + (get_ori() + offset_cam)
+
+
+func get_ori() -> Vector3:
+	return Vector3(0, 3, 1)
+
+func get_target() -> Vector3:
+	return $"CrossMain".position
+
+
+func get_cam() -> Vector3:
+	return $"../Camera3D".position
+	
