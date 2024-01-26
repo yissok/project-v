@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://duj8cloekrr5s"]
+[gd_scene load_steps=35 format=3 uid="uid://duj8cloekrr5s"]
 
 [ext_resource type="Script" path="res://scripts/Crosshair.gd" id="1_m88w7"]
 [ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_vvscl"]
@@ -25,6 +25,9 @@
 [ext_resource type="Script" path="res://scripts/enemy1.gd" id="23_qujfw"]
 [ext_resource type="PackedScene" uid="uid://c2s7fhbl0o7e1" path="res://assets/models/bullet.glb" id="24_wu8ab"]
 [ext_resource type="Texture2D" uid="uid://cij8s4wrgm0tp" path="res://assets/models/tile_sabbia_sabbia.png" id="25_3lkod"]
+[ext_resource type="PackedScene" uid="uid://81sgpru88tve" path="res://assets/models/moon.glb" id="26_l0bdk"]
+[ext_resource type="PackedScene" uid="uid://b3mnnuo8oxw1k" path="res://assets/models/SpaceStation.glb" id="27_xk5qj"]
+[ext_resource type="PackedScene" uid="uid://1o46uj5ocbdi" path="res://assets/placeholder/roccia_2.glb" id="29_52dj8"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gpifv"]
 panorama = ExtResource("12_os1xl")
@@ -62,7 +65,6 @@ script = ExtResource("1_vvscl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0289841, 2.2512, 0.930524)
 
 [node name="Crosshair" type="Node3D" parent="."]
-visible = false
 script = ExtResource("1_m88w7")
 
 [node name="CrossMain" type="Sprite3D" parent="Crosshair"]
@@ -91,7 +93,6 @@ ticks_on_borders = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -10, 10, 0)
 
 [node name="TileManager" type="Node3D" parent="."]
-visible = false
 script = ExtResource("8_7ijcc")
 
 [node name="timer_spawn_tile" type="Timer" parent="TileManager"]
@@ -137,10 +138,84 @@ script = ExtResource("23_qujfw")
 [node name="bullet" parent="." instance=ExtResource("24_wu8ab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92169, 3.42357, -2.2563)
 
-[node name="EmitterSand" type="GPUParticles3D" parent="."]
+[node name="AmbientePlaceholder" type="Node3D" parent="."]
+
+[node name="moon" parent="AmbientePlaceholder" instance=ExtResource("26_l0bdk")]
+transform = Transform3D(-1.08057, 0, -4.03274, 0, 4.175, 0, 4.03274, 0, -1.08057, -37.66, 24.486, -66.347)
+
+[node name="SpaceStation" parent="AmbientePlaceholder/moon" instance=ExtResource("27_xk5qj")]
+transform = Transform3D(-0.0259366, -0.0273314, 0.113931, -0.0870449, 0.0826025, 0, -0.078425, -0.0826426, -0.0376791, -0.933, 3.282, -2.235)
+
+[node name="sabbia" parent="AmbientePlaceholder" instance=ExtResource("8_hdvsu")]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, -6.49467, 0)
+
+[node name="rocce" type="Node3D" parent="AmbientePlaceholder"]
+
+[node name="complesso1" type="Node3D" parent="AmbientePlaceholder/rocce"]
+
+[node name="roccia_1" parent="AmbientePlaceholder/rocce/complesso1" instance=ExtResource("29_52dj8")]
+transform = Transform3D(7.73842, 0, 9.61503, 0, 12.3423, 0, -9.61503, 0, 7.73842, -39.7809, -11.0047, -28.9343)
+
+[node name="roccia_2" parent="AmbientePlaceholder/rocce/complesso1" instance=ExtResource("29_52dj8")]
+transform = Transform3D(11.6197, 0, -4.16113, 0, 12.3423, 0, 4.16113, 0, 11.6197, -58.6694, -11.0047, -15.3125)
+
+[node name="roccia_3" parent="AmbientePlaceholder/rocce/complesso1" instance=ExtResource("29_52dj8")]
+transform = Transform3D(17.3519, 0, -6.21392, 0, 18.431, 0, 6.21392, 0, 17.3519, -58.6694, -13.8169, -48.7366)
+
+[node name="roccia_4" parent="AmbientePlaceholder/rocce/complesso1" instance=ExtResource("29_52dj8")]
+transform = Transform3D(9.4, 0, 0, 0, 8.62036, -3.74824, 0, 3.74824, 8.62036, -46.8717, 0.516272, -10.3238)
+
+[node name="complesso2" type="Node3D" parent="AmbientePlaceholder/rocce"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101.784, 0, -58.9163)
+
+[node name="roccia_1" parent="AmbientePlaceholder/rocce/complesso2" instance=ExtResource("29_52dj8")]
+transform = Transform3D(7.73842, 0, 9.61503, 0, 12.3423, 0, -9.61503, 0, 7.73842, -39.7809, -11.0047, -28.9343)
+
+[node name="roccia_2" parent="AmbientePlaceholder/rocce/complesso2" instance=ExtResource("29_52dj8")]
+transform = Transform3D(11.6197, 0, -4.16113, 0, 12.3423, 0, 4.16113, 0, 11.6197, -58.6694, -11.0047, -15.3125)
+
+[node name="roccia_3" parent="AmbientePlaceholder/rocce/complesso2" instance=ExtResource("29_52dj8")]
+transform = Transform3D(17.3519, 0, -6.21392, 0, 18.431, 0, 6.21392, 0, 17.3519, -58.6694, -13.8169, -48.7366)
+
+[node name="roccia_4" parent="AmbientePlaceholder/rocce/complesso2" instance=ExtResource("29_52dj8")]
+transform = Transform3D(9.4, 0, 0, 0, 8.62036, -3.74824, 0, 3.74824, 8.62036, -46.8717, 0.516272, -10.3238)
+
+[node name="complesso4" type="Node3D" parent="AmbientePlaceholder/rocce"]
+transform = Transform3D(0.232213, 0, 0, 0, 0.232213, 0, 0, 0, 0.232213, -3.58087, 1.50799, -17.0016)
+
+[node name="roccia_1" parent="AmbientePlaceholder/rocce/complesso4" instance=ExtResource("29_52dj8")]
+transform = Transform3D(7.73842, 0, 9.61503, 0, 12.3423, 0, -9.61503, 0, 7.73842, -39.7809, -11.0047, -28.9343)
+
+[node name="roccia_2" parent="AmbientePlaceholder/rocce/complesso4" instance=ExtResource("29_52dj8")]
+transform = Transform3D(11.6197, 0, -4.16113, 0, 12.3423, 0, 4.16113, 0, 11.6197, -58.6694, -11.0047, -15.3125)
+
+[node name="roccia_3" parent="AmbientePlaceholder/rocce/complesso4" instance=ExtResource("29_52dj8")]
+transform = Transform3D(17.3519, 0, -6.21392, 0, 18.431, 0, 6.21392, 0, 17.3519, -58.6694, -13.8169, -48.7366)
+
+[node name="roccia_4" parent="AmbientePlaceholder/rocce/complesso4" instance=ExtResource("29_52dj8")]
+transform = Transform3D(9.4, 0, 0, 0, 8.62036, -3.74824, 0, 3.74824, 8.62036, -46.8717, 0.516272, -10.3238)
+
+[node name="complesso3" type="Node3D" parent="AmbientePlaceholder/rocce"]
+transform = Transform3D(-0.999391, 0, -0.0348994, 0, 1, 0, 0.0348994, 0, -0.999391, -119.534, 7.12264, -132.736)
+
+[node name="roccia_1" parent="AmbientePlaceholder/rocce/complesso3" instance=ExtResource("29_52dj8")]
+transform = Transform3D(7.73842, 0, 9.61503, 0, 12.3423, 0, -9.61503, 0, 7.73842, -39.7809, -11.0047, -28.9343)
+
+[node name="roccia_2" parent="AmbientePlaceholder/rocce/complesso3" instance=ExtResource("29_52dj8")]
+transform = Transform3D(11.6197, 0, -4.16113, 0, 12.3423, 0, 4.16113, 0, 11.6197, -58.6694, -11.0047, -15.3125)
+
+[node name="roccia_3" parent="AmbientePlaceholder/rocce/complesso3" instance=ExtResource("29_52dj8")]
+transform = Transform3D(17.3519, 0, -6.21392, 0, 18.431, 0, 6.21392, 0, 17.3519, -58.6694, -13.8169, -48.7366)
+
+[node name="roccia_4" parent="AmbientePlaceholder/rocce/complesso3" instance=ExtResource("29_52dj8")]
+transform = Transform3D(9.4, 0, 0, 0, 8.62036, -3.74824, 0, 3.74824, 8.62036, -46.8717, 0.516272, -10.3238)
+
+[node name="EmitterSand" type="GPUParticles3D" parent="AmbientePlaceholder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.83154, 0)
+visible = false
+emitting = false
 amount = 4
-lifetime = 23.85
+lifetime = 6.25
 process_material = SubResource("ParticleProcessMaterial_canuw")
 draw_pass_1 = SubResource("PlaneMesh_waus6")
 
