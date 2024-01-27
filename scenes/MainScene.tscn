@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://duj8cloekrr5s"]
+[gd_scene load_steps=40 format=3 uid="uid://duj8cloekrr5s"]
 
 [ext_resource type="Script" path="res://scripts/Crosshair.gd" id="1_m88w7"]
 [ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_vvscl"]
@@ -44,6 +44,14 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.002
 volumetric_fog_emission = Color(0.858824, 0.815686, 0, 1)
 volumetric_fog_emission_energy = 0.4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1n3ky"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_851va"]
+radius = 0.1
+height = 0.802
+radial_segments = 4
+rings = 2
 
 [sub_resource type="Curve" id="Curve_bbnqs"]
 _data = [Vector2(0.0215054, 0), 0.0, 0.0, 0, 0, Vector2(0.480287, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -152,6 +160,13 @@ script = ExtResource("23_qujfw")
 [node name="bullet" parent="." instance=ExtResource("24_wu8ab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92169, 3.42357, -2.2563)
 script = ExtResource("25_ge00l")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="bullet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0101502, -1.17596, -0.0279126)
+amount = 40
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_1n3ky")
+draw_pass_1 = SubResource("SphereMesh_851va")
 
 [node name="AmbientePlaceholder" type="Node3D" parent="."]
 

@@ -62,7 +62,6 @@ func _spara():
 	$gunshot.play()
 	sparato = true
 	self.emit_signal("shot_fired")
-	print("Sparato")
 	pass
 
 func _ricarica():
