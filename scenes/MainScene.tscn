@@ -108,6 +108,7 @@ ticks_on_borders = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -10, 10, 0)
 
 [node name="TileManager" type="Node3D" parent="."]
+visible = false
 script = ExtResource("8_7ijcc")
 
 [node name="timer_spawn_tile" type="Timer" parent="TileManager"]
@@ -116,6 +117,7 @@ script = ExtResource("9_6yiwm")
 
 [node name="tile_sabbia" parent="TileManager" instance=ExtResource("8_hdvsu")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+visible = false
 script = ExtResource("9_hkw4p")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
