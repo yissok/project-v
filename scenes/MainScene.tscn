@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://duj8cloekrr5s"]
+[gd_scene load_steps=38 format=3 uid="uid://duj8cloekrr5s"]
 
 [ext_resource type="Script" path="res://scripts/Crosshair.gd" id="1_m88w7"]
 [ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_vvscl"]
@@ -24,10 +24,10 @@
 [ext_resource type="PackedScene" uid="uid://dp1brf0fn6prc" path="res://assets/models/enemy1.glb" id="22_vwe2v"]
 [ext_resource type="Script" path="res://scripts/enemy1.gd" id="23_qujfw"]
 [ext_resource type="PackedScene" uid="uid://c2s7fhbl0o7e1" path="res://assets/models/bullet.glb" id="24_wu8ab"]
-[ext_resource type="Texture2D" uid="uid://cij8s4wrgm0tp" path="res://assets/models/tile_sabbia_sabbia.png" id="25_3lkod"]
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="25_ge00l"]
 [ext_resource type="PackedScene" uid="uid://81sgpru88tve" path="res://assets/models/moon.glb" id="26_l0bdk"]
 [ext_resource type="PackedScene" uid="uid://b3mnnuo8oxw1k" path="res://assets/models/SpaceStation.glb" id="27_xk5qj"]
+[ext_resource type="Texture2D" uid="uid://c5ig36rjcsuae" path="res://assets/spriites/dust1.png" id="29_6um7g"]
 [ext_resource type="PackedScene" uid="uid://1o46uj5ocbdi" path="res://assets/placeholder/roccia_2.glb" id="29_52dj8"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gpifv"]
@@ -45,19 +45,31 @@ volumetric_fog_density = 0.002
 volumetric_fog_emission = Color(0.858824, 0.815686, 0, 1)
 volumetric_fog_emission_energy = 0.4
 
+[sub_resource type="Curve" id="Curve_bbnqs"]
+_data = [Vector2(0.0215054, 0), 0.0, 0.0, 0, 0, Vector2(0.480287, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_drtuf"]
+curve = SubResource("Curve_bbnqs")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_canuw"]
 lifetime_randomness = 0.5
 emission_shape = 3
-emission_box_extents = Vector3(20, 0.1, 20)
-gravity = Vector3(0, 0, 0)
+emission_box_extents = Vector3(20, 0.1, 7.64)
+velocity_pivot = Vector3(1, 0, 0)
+gravity = Vector3(0, 0, 1)
+attractor_interaction_enabled = false
+alpha_curve = SubResource("CurveTexture_drtuf")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u16c1"]
-albedo_texture = ExtResource("25_3lkod")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p7f0n"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("29_6um7g")
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_waus6"]
-material = SubResource("StandardMaterial3D_u16c1")
-size = Vector2(10, 10)
+material = SubResource("StandardMaterial3D_p7f0n")
+size = Vector2(40, 40)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_vvscl")
@@ -142,7 +154,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92169, 3.42357, -2.2563)
 script = ExtResource("25_ge00l")
 
 [node name="AmbientePlaceholder" type="Node3D" parent="."]
-visible = false
 
 [node name="moon" parent="AmbientePlaceholder" instance=ExtResource("26_l0bdk")]
 transform = Transform3D(-1.08057, 0, -4.03274, 0, 4.175, 0, 4.03274, 0, -1.08057, -37.66, 24.486, -66.347)
@@ -215,11 +226,9 @@ transform = Transform3D(17.3519, 0, -6.21392, 0, 18.431, 0, 6.21392, 0, 17.3519,
 transform = Transform3D(9.4, 0, 0, 0, 8.62036, -3.74824, 0, 3.74824, 8.62036, -46.8717, 0.516272, -10.3238)
 
 [node name="EmitterSand" type="GPUParticles3D" parent="AmbientePlaceholder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.83154, 0)
-visible = false
-emitting = false
-amount = 4
-lifetime = 6.25
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.933657, -33.4755)
+amount = 6
+lifetime = 20.0
 process_material = SubResource("ParticleProcessMaterial_canuw")
 draw_pass_1 = SubResource("PlaneMesh_waus6")
 
