@@ -24,7 +24,6 @@ func _process(_delta):
 	pos_x = Input.get_axis("ra_left", "ra_right")
 	pos_y = Input.get_axis("ra_up", "ra_down")
 	joystick=get_joystick_position(pos_x, pos_y)
-	print(joystick==JoystickPosition.RIGHT)
 	$ControllerStickUiSmall.position = Vector2(pos_x, pos_y)*200
 	if (Input.is_action_pressed("shoot")==true) && (sparato == false):
 		_spara()

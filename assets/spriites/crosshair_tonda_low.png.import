@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hp1gjwdxjblc"
-path.s3tc="res://.godot/imported/crosshair_tonda.png-40101d174759b8b8aee552411ab1523a.s3tc.ctex"
+uid="uid://dnauid1daskwd"
+path.s3tc="res://.godot/imported/crosshair_tonda_low.png-f93705e0cfc65be35987379c4dade529.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/spriites/crosshair_tonda.png"
-dest_files=["res://.godot/imported/crosshair_tonda.png-40101d174759b8b8aee552411ab1523a.s3tc.ctex"]
+source_file="res://assets/spriites/crosshair_tonda_low.png"
+dest_files=["res://.godot/imported/crosshair_tonda_low.png-f93705e0cfc65be35987379c4dade529.s3tc.ctex"]
 
 [params]
 
@@ -24,7 +24,7 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
+roughness/mode=1
 roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false

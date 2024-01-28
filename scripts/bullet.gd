@@ -20,14 +20,14 @@ func _ready():
 func _process(delta):
 	self.rotation = self.rotation + Vector3(0, 0, 0.08)
 	timer= timer+delta
-	self.position = target_at_shot_time*time_since_shot() + get_ori()
+	self.position = target_at_shot_time * time_since_shot() + get_ori()
 	pass
 
 func _on_shot_fired():
 	target_at_shot_time=get_target() - get_ori()
 	last_shot_time=timer
 	self.visible = true
-	self.look_at(get_target())
+	self.look_at_from_position(get_ori(), get_target())
 	print("Shot Fired by Player!")
 
 
