@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://duj8cloekrr5s"]
+[gd_scene load_steps=39 format=3 uid="uid://duj8cloekrr5s"]
 
 [ext_resource type="Script" path="res://scripts/Crosshair.gd" id="1_m88w7"]
 [ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_vvscl"]
@@ -30,9 +30,6 @@
 [ext_resource type="PackedScene" uid="uid://b3mnnuo8oxw1k" path="res://assets/models/SpaceStation.glb" id="27_xk5qj"]
 [ext_resource type="Texture2D" uid="uid://c5ig36rjcsuae" path="res://assets/spriites/dust1.png" id="29_6um7g"]
 [ext_resource type="PackedScene" uid="uid://1o46uj5ocbdi" path="res://assets/placeholder/roccia_2.glb" id="29_52dj8"]
-[ext_resource type="PackedScene" uid="uid://d3mtmimq1spng" path="res://assets/models/tank.glb" id="31_48j7v"]
-[ext_resource type="PackedScene" uid="uid://nfva4rroca3p" path="res://assets/models/wheel.glb" id="32_158bf"]
-[ext_resource type="Script" path="res://scripts/wheel.gd" id="33_6leef"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gpifv"]
 panorama = ExtResource("12_os1xl")
@@ -79,7 +76,7 @@ size = Vector2(40, 40)
 script = ExtResource("1_vvscl")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.978148, -0.207911, 0, 0.207911, 0.978148, -0.029, 3.18123, 0.931)
+transform = Transform3D(1.055, 0, 0, 0, 1.03195, -0.219347, 0, 0.219347, 1.03195, -0.029, 4.211, 0.931)
 
 [node name="Crosshair" type="Node3D" parent="."]
 script = ExtResource("1_m88w7")
@@ -240,38 +237,5 @@ amount = 6
 lifetime = 20.0
 process_material = SubResource("ParticleProcessMaterial_canuw")
 draw_pass_1 = SubResource("PlaneMesh_waus6")
-
-[node name="tank" parent="AmbientePlaceholder" instance=ExtResource("31_48j7v")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.038033, 2.23315, 2.16792)
-
-[node name="ruote_sx" type="Node3D" parent="AmbientePlaceholder/tank"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23571, 0, 0.7981)
-
-[node name="wheel" parent="AmbientePlaceholder/tank/ruote_sx" instance=ExtResource("32_158bf")]
-transform = Transform3D(-0.0361512, 0, 1.4771, 0, 1.47754, 0, -1.4771, 0, -0.0361512, 1.19267, -1.19175, 1.20764)
-script = ExtResource("33_6leef")
-
-[node name="wheel2" parent="AmbientePlaceholder/tank/ruote_sx" instance=ExtResource("32_158bf")]
-transform = Transform3D(-0.0361512, 0, 1.4771, 0, 1.47754, 0, -1.4771, 0, -0.0361512, 1.19267, -1.19175, -0.799878)
-script = ExtResource("33_6leef")
-
-[node name="wheel3" parent="AmbientePlaceholder/tank/ruote_sx" instance=ExtResource("32_158bf")]
-transform = Transform3D(-0.0361512, 0, 1.4771, 0, 1.47754, 0, -1.4771, 0, -0.0361512, 1.19267, -1.19175, -2.79159)
-script = ExtResource("33_6leef")
-
-[node name="ruote_dx" type="Node3D" parent="AmbientePlaceholder/tank"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.06943, 0, 0.7981)
-
-[node name="wheel" parent="AmbientePlaceholder/tank/ruote_dx" instance=ExtResource("32_158bf")]
-transform = Transform3D(-0.0361512, 0, 1.4771, 0, 1.47754, 0, -1.4771, 0, -0.0361512, 1.19267, -1.19175, 1.20764)
-script = ExtResource("33_6leef")
-
-[node name="wheel2" parent="AmbientePlaceholder/tank/ruote_dx" instance=ExtResource("32_158bf")]
-transform = Transform3D(-0.0361512, 0, 1.4771, 0, 1.47754, 0, -1.4771, 0, -0.0361512, 1.19267, -1.19175, -0.799878)
-script = ExtResource("33_6leef")
-
-[node name="wheel3" parent="AmbientePlaceholder/tank/ruote_dx" instance=ExtResource("32_158bf")]
-transform = Transform3D(-0.0361512, 0, 1.4771, 0, 1.47754, 0, -1.4771, 0, -0.0361512, 1.19267, -1.19175, -2.79159)
-script = ExtResource("33_6leef")
 
 [connection signal="timeout" from="TileManager/timer_spawn_tile" to="TileManager" method="_on_timer_spawn_tile_timeout"]
