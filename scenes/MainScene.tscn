@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://duj8cloekrr5s"]
+[gd_scene load_steps=38 format=3 uid="uid://duj8cloekrr5s"]
 
 [ext_resource type="Script" path="res://scripts/Crosshair.gd" id="1_m88w7"]
 [ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_vvscl"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://b3mnnuo8oxw1k" path="res://assets/models/SpaceStation.glb" id="27_xk5qj"]
 [ext_resource type="Texture2D" uid="uid://c5ig36rjcsuae" path="res://assets/spriites/dust1.png" id="29_6um7g"]
 [ext_resource type="PackedScene" uid="uid://1o46uj5ocbdi" path="res://assets/placeholder/roccia_2.glb" id="29_52dj8"]
+[ext_resource type="AudioStream" uid="uid://bmm3mbeof5ko0" path="res://assets/sounds/music/loop_placeholder.ogg" id="29_lwxog"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gpifv"]
 panorama = ExtResource("12_os1xl")
@@ -136,19 +137,24 @@ texture = ExtResource("15_je1ct")
 
 [node name="gunshot" type="AudioStreamPlayer" parent="ControllerStickUiBig"]
 stream = ExtResource("17_apdhj")
+bus = &"SFX"
 
 [node name="reload1" type="AudioStreamPlayer" parent="ControllerStickUiBig"]
 stream = ExtResource("18_k1kmh")
+bus = &"SFX"
 
 [node name="reload2" type="AudioStreamPlayer" parent="ControllerStickUiBig"]
 stream = ExtResource("19_siggk")
+bus = &"SFX"
 
 [node name="reload3" type="AudioStreamPlayer" parent="ControllerStickUiBig"]
 stream = ExtResource("20_3evoe")
+bus = &"SFX"
 
 [node name="AmbienceDesert" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_ragkr")
 volume_db = -8.667
+bus = &"SFX"
 
 [node name="enemy1" parent="." instance=ExtResource("22_vwe2v")]
 transform = Transform3D(1.3221, 0, 0, 0, 1.3221, 0, 0, 0, 1.3221, -3.50391, 3.95025, -15.0244)
@@ -239,5 +245,9 @@ amount = 6
 lifetime = 20.0
 process_material = SubResource("ParticleProcessMaterial_canuw")
 draw_pass_1 = SubResource("PlaneMesh_waus6")
+
+[node name="musica_loop" type="AudioStreamPlayer" parent="AmbientePlaceholder"]
+stream = ExtResource("29_lwxog")
+bus = &"Music"
 
 [connection signal="timeout" from="TileManager/timer_spawn_tile" to="TileManager" method="_on_timer_spawn_tile_timeout"]
