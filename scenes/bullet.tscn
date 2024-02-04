@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://1sk8n5xec4bf"]
+
+[ext_resource type="PackedScene" uid="uid://c2s7fhbl0o7e1" path="res://assets/models/bullet.glb" id="1_78xy3"]
+[ext_resource type="Script" path="res://scripts/bulletIDK.gd" id="2_4clul"]
+
+[node name="bullet" instance=ExtResource("1_78xy3")]
+script = ExtResource("2_4clul")

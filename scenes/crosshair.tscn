@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://x5ddxfx2nyg7"]
+
+[ext_resource type="Script" path="res://scripts/Crosshair.gd" id="1_uvluf"]
+[ext_resource type="Texture2D" uid="uid://dnauid1daskwd" path="res://assets/spriites/crosshair_tonda_low.png" id="2_he2yb"]
+[ext_resource type="Script" path="res://scripts/CrossMain.gd" id="3_1wpx4"]
+[ext_resource type="Script" path="res://scripts/Cross2.gd" id="4_cxe5c"]
+[ext_resource type="Script" path="res://scripts/Cross3.gd" id="5_yxamc"]
+
+[node name="Crosshair" type="Node3D"]
+script = ExtResource("1_uvluf")
+
+[node name="CrossMain" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.14838, -19.4291)
+gi_mode = 0
+texture_filter = 0
+texture = ExtResource("2_he2yb")
+script = ExtResource("3_1wpx4")
+
+[node name="Cross2" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.18891, -13.0826)
+texture_filter = 0
+texture = ExtResource("2_he2yb")
+script = ExtResource("4_cxe5c")
+
+[node name="Cross3" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.1942, -12.4545)
+texture_filter = 0
+texture = ExtResource("2_he2yb")
+script = ExtResource("5_yxamc")
+
+[node name="slider_offset_camera" type="HSlider" parent="."]
+offset_right = 223.0
+offset_bottom = 53.0
+step = 10.0
+value = 20.0
+tick_count = 10
+ticks_on_borders = true

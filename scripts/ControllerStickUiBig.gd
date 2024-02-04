@@ -53,8 +53,8 @@ func _spara():
 func _ricarica():
 	if (sparato==true) && (joystick == JoystickPosition.CENTER):
 		joy_state_idle = true
-		#sparato = false ## WILL REMOVE THESE DW, JUST TO EASE TESTING
-		#joy_went_down = false ## WILL REMOVE THESE DW, JUST TO EASE TESTING
+		sparato = false ## WILL REMOVE THESE DW, JUST TO EASE TESTING
+		joy_went_down = false ## WILL REMOVE THESE DW, JUST TO EASE TESTING
 	if (joy_state_idle== true) && (joystick == JoystickPosition.RIGHT):
 		joy_went_right = true
 		joy_state_idle = false
