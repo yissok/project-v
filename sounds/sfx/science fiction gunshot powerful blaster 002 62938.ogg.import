@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cg5s8ebcehiiy"
+path="res://.godot/imported/science fiction gunshot powerful blaster 002 62938.ogg-eda3df7cab9f7736e272b457bab87c7c.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/sfx/science fiction gunshot powerful blaster 002 62938.ogg"
+dest_files=["res://.godot/imported/science fiction gunshot powerful blaster 002 62938.ogg-eda3df7cab9f7736e272b457bab87c7c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

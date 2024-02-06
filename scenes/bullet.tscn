@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://1sk8n5xec4bf"]
+[gd_scene load_steps=4 format=3 uid="uid://1sk8n5xec4bf"]
 
-[ext_resource type="PackedScene" uid="uid://c2s7fhbl0o7e1" path="res://assets/models/bullet.glb" id="1_78xy3"]
+[ext_resource type="PackedScene" uid="uid://c2s7fhbl0o7e1" path="res://models/bullet.glb" id="1_78xy3"]
 [ext_resource type="Script" path="res://scripts/bulletIDK.gd" id="2_4clul"]
+[ext_resource type="PackedScene" uid="uid://71ttsp2uwurv" path="res://models/scia.tscn" id="3_woi2q"]
 
 [node name="bullet" instance=ExtResource("1_78xy3")]
 script = ExtResource("2_4clul")
+
+[node name="scia" parent="." index="1" instance=ExtResource("3_woi2q")]
+transform = Transform3D(1.86, 0, 0, 0, -5.20166e-08, 1.86, 0, -1.19, -8.13032e-08, 0, 0.01, 3.65162)

@@ -18,5 +18,4 @@ func _process(delta):
 
 func _on_timer_spawn_tile_timeout():
 	$tile_sabbia.position = Vector3(0,0,0)
-	print("newtile")
 	pass # Replace with function body.

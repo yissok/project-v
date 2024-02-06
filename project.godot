@@ -23,6 +23,17 @@ project/assembly_name="project-v"
 
 enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://models/": "orange",
+"res://placeholder/": "gray",
+"res://scenes/": "yellow",
+"res://scripts/": "green",
+"res://sounds/": "purple",
+"res://spriites/": "red"
+}
+
 [input]
 
 la_up={

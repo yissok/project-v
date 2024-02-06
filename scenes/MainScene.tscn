@@ -4,25 +4,25 @@
 [ext_resource type="PackedScene" uid="uid://yipluvmeg5om" path="res://scenes/cannon.tscn" id="2_o1lyy"]
 [ext_resource type="PackedScene" uid="uid://x5ddxfx2nyg7" path="res://scenes/crosshair.tscn" id="3_6p4u0"]
 [ext_resource type="Script" path="res://scripts/TileManager.gd" id="8_7ijcc"]
-[ext_resource type="PackedScene" uid="uid://b2xlvdlvs60k3" path="res://assets/models/tile_sabbia.glb" id="8_hdvsu"]
+[ext_resource type="PackedScene" uid="uid://b2xlvdlvs60k3" path="res://models/tile_sabbia.glb" id="8_hdvsu"]
 [ext_resource type="Script" path="res://scripts/timer_spawn_tile.gd" id="9_6yiwm"]
 [ext_resource type="Script" path="res://scripts/tile_sabbia.gd" id="9_hkw4p"]
-[ext_resource type="Texture2D" uid="uid://dd7k80r34xqcw" path="res://assets/spriites/skybox_texture_256.png" id="12_os1xl"]
-[ext_resource type="Texture2D" uid="uid://7ua756832ymt" path="res://assets/spriites/ControllerStickUI_big.png" id="13_h1akc"]
+[ext_resource type="Texture2D" uid="uid://dd7k80r34xqcw" path="res://spriites/skybox_texture_256.png" id="12_os1xl"]
+[ext_resource type="Texture2D" uid="uid://7ua756832ymt" path="res://spriites/ControllerStickUI_big.png" id="13_h1akc"]
 [ext_resource type="Script" path="res://scripts/ControllerStickUiBig.gd" id="14_su5nr"]
-[ext_resource type="Texture2D" uid="uid://dpvq3bdt14pfa" path="res://assets/spriites/ControllerStickUI_small.png" id="15_je1ct"]
-[ext_resource type="AudioStream" uid="uid://drtq42x3e3vrq" path="res://assets/sounds/sfx/ambience_desert.ogg" id="16_ragkr"]
-[ext_resource type="AudioStream" uid="uid://2yq2nu6k8heb" path="res://assets/sounds/sfx/gunshot.ogg" id="17_apdhj"]
-[ext_resource type="AudioStream" uid="uid://bln601nkbifuy" path="res://assets/sounds/sfx/reload1.ogg" id="18_k1kmh"]
-[ext_resource type="AudioStream" uid="uid://d2ximwfabfi0g" path="res://assets/sounds/sfx/reload2.ogg" id="19_siggk"]
-[ext_resource type="AudioStream" uid="uid://cb06yomfkokh" path="res://assets/sounds/sfx/reload3.ogg" id="20_3evoe"]
-[ext_resource type="PackedScene" uid="uid://dp1brf0fn6prc" path="res://assets/models/enemy1.glb" id="22_vwe2v"]
+[ext_resource type="Texture2D" uid="uid://dpvq3bdt14pfa" path="res://spriites/ControllerStickUI_small.png" id="15_je1ct"]
+[ext_resource type="AudioStream" uid="uid://drtq42x3e3vrq" path="res://sounds/sfx/ambience_desert.ogg" id="16_ragkr"]
+[ext_resource type="AudioStream" uid="uid://2yq2nu6k8heb" path="res://sounds/sfx/gunshot.ogg" id="17_apdhj"]
+[ext_resource type="AudioStream" uid="uid://bln601nkbifuy" path="res://sounds/sfx/reload1.ogg" id="18_k1kmh"]
+[ext_resource type="AudioStream" uid="uid://d2ximwfabfi0g" path="res://sounds/sfx/reload2.ogg" id="19_siggk"]
+[ext_resource type="AudioStream" uid="uid://cb06yomfkokh" path="res://sounds/sfx/reload3.ogg" id="20_3evoe"]
+[ext_resource type="PackedScene" uid="uid://dp1brf0fn6prc" path="res://models/enemy1.glb" id="22_vwe2v"]
 [ext_resource type="Script" path="res://scripts/enemy1.gd" id="23_qujfw"]
-[ext_resource type="PackedScene" uid="uid://81sgpru88tve" path="res://assets/models/moon.glb" id="26_l0bdk"]
-[ext_resource type="PackedScene" uid="uid://b3mnnuo8oxw1k" path="res://assets/models/SpaceStation.glb" id="27_xk5qj"]
-[ext_resource type="Texture2D" uid="uid://c5ig36rjcsuae" path="res://assets/spriites/dust1.png" id="29_6um7g"]
-[ext_resource type="PackedScene" uid="uid://1o46uj5ocbdi" path="res://assets/placeholder/roccia_2.glb" id="29_52dj8"]
-[ext_resource type="AudioStream" uid="uid://bmm3mbeof5ko0" path="res://assets/sounds/music/loop_placeholder.ogg" id="29_lwxog"]
+[ext_resource type="PackedScene" uid="uid://81sgpru88tve" path="res://models/moon.glb" id="26_l0bdk"]
+[ext_resource type="PackedScene" uid="uid://b3mnnuo8oxw1k" path="res://models/SpaceStation.glb" id="27_xk5qj"]
+[ext_resource type="Texture2D" uid="uid://c5ig36rjcsuae" path="res://spriites/dust1.png" id="29_6um7g"]
+[ext_resource type="PackedScene" uid="uid://1o46uj5ocbdi" path="res://placeholder/roccia_2.glb" id="29_52dj8"]
+[ext_resource type="AudioStream" uid="uid://bmm3mbeof5ko0" path="res://sounds/music/loop_placeholder.ogg" id="29_lwxog"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gpifv"]
 panorama = ExtResource("12_os1xl")
@@ -69,12 +69,13 @@ size = Vector2(40, 40)
 script = ExtResource("1_vvscl")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.978148, -0.207911, 0, 0.207911, 0.978148, 0, 4, 10.6851)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 10.6851)
 
 [node name="Cannon" parent="." instance=ExtResource("2_o1lyy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13249, 4)
 
 [node name="Crosshair" parent="." instance=ExtResource("3_6p4u0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.14861)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -10, 10, 0)

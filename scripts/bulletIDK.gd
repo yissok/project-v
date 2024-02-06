@@ -19,8 +19,11 @@ func _ready():
 
 func _process(delta):
 	self.rotation = self.rotation + Vector3(0, 0, 0.08)
-	timer= timer+delta
+	timer = timer + delta
 	self.position = target_at_shot_time * time_since_shot() + $"..".get_ori()
+	if timer > 10:
+		queue_free()
+		print("despawn")
 	pass
 
 
