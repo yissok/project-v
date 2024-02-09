@@ -1,0 +1,40 @@
+[gd_scene load_steps=10 format=3 uid="uid://dli8hwxqbbvmq"]
+
+[ext_resource type="PackedScene" uid="uid://yipluvmeg5om" path="res://scenes/cannon.tscn" id="1_lg1hj"]
+[ext_resource type="PackedScene" uid="uid://x5ddxfx2nyg7" path="res://scenes/crosshair.tscn" id="2_hdvbu"]
+[ext_resource type="Texture2D" uid="uid://7ua756832ymt" path="res://spriites/ControllerStickUI_big.png" id="3_m04ba"]
+[ext_resource type="Script" path="res://scripts/ControllerStickUiBig.gd" id="4_sgt2e"]
+[ext_resource type="Texture2D" uid="uid://dpvq3bdt14pfa" path="res://spriites/ControllerStickUI_small.png" id="5_fk1a0"]
+[ext_resource type="AudioStream" uid="uid://2yq2nu6k8heb" path="res://sounds/sfx/gunshot.ogg" id="6_g8qru"]
+[ext_resource type="AudioStream" uid="uid://bln601nkbifuy" path="res://sounds/sfx/reload1.ogg" id="7_nsetm"]
+[ext_resource type="AudioStream" uid="uid://d2ximwfabfi0g" path="res://sounds/sfx/reload2.ogg" id="8_dclpt"]
+[ext_resource type="AudioStream" uid="uid://cb06yomfkokh" path="res://sounds/sfx/reload3.ogg" id="9_0yug8"]
+
+[node name="Player" type="Node"]
+
+[node name="Cannon" parent="." instance=ExtResource("1_lg1hj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13249, 4)
+
+[node name="Crosshair" parent="." instance=ExtResource("2_hdvbu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.14861)
+
+[node name="ControllerStickUiBig" type="Sprite2D" parent="."]
+position = Vector2(76, 142)
+scale = Vector2(0.333333, 0.333333)
+texture = ExtResource("3_m04ba")
+script = ExtResource("4_sgt2e")
+
+[node name="ControllerStickUiSmall" type="Sprite2D" parent="ControllerStickUiBig"]
+texture = ExtResource("5_fk1a0")
+
+[node name="gunshot" type="AudioStreamPlayer" parent="ControllerStickUiBig"]
+stream = ExtResource("6_g8qru")
+
+[node name="reload1" type="AudioStreamPlayer" parent="ControllerStickUiBig"]
+stream = ExtResource("7_nsetm")
+
+[node name="reload2" type="AudioStreamPlayer" parent="ControllerStickUiBig"]
+stream = ExtResource("8_dclpt")
+
+[node name="reload3" type="AudioStreamPlayer" parent="ControllerStickUiBig"]
+stream = ExtResource("9_0yug8")

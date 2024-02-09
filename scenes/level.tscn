@@ -1,0 +1,174 @@
+[gd_scene load_steps=22 format=3 uid="uid://wr14c0451l7f"]
+
+[ext_resource type="Script" path="res://scripts/TileManager.gd" id="1_chdn7"]
+[ext_resource type="Script" path="res://scripts/timer_spawn_tile.gd" id="2_f8xpn"]
+[ext_resource type="PackedScene" uid="uid://b2xlvdlvs60k3" path="res://models/tile_sabbia.glb" id="3_cut6m"]
+[ext_resource type="Script" path="res://scripts/tile_sabbia.gd" id="4_p40kl"]
+[ext_resource type="Texture2D" uid="uid://dd7k80r34xqcw" path="res://spriites/skybox_texture_256.png" id="5_eqey1"]
+[ext_resource type="AudioStream" uid="uid://drtq42x3e3vrq" path="res://sounds/sfx/ambience_desert.ogg" id="6_kk3on"]
+[ext_resource type="PackedScene" uid="uid://dp1brf0fn6prc" path="res://models/enemy1.glb" id="7_vtj63"]
+[ext_resource type="Script" path="res://scripts/enemy1.gd" id="8_fpgt0"]
+[ext_resource type="PackedScene" uid="uid://81sgpru88tve" path="res://models/moon.glb" id="9_w81ji"]
+[ext_resource type="PackedScene" uid="uid://b3mnnuo8oxw1k" path="res://models/SpaceStation.glb" id="10_h7n0m"]
+[ext_resource type="PackedScene" uid="uid://1o46uj5ocbdi" path="res://placeholder/roccia_2.glb" id="11_dhwaj"]
+[ext_resource type="Texture2D" uid="uid://c5ig36rjcsuae" path="res://spriites/dust1.png" id="12_x6eh4"]
+[ext_resource type="AudioStream" uid="uid://bmm3mbeof5ko0" path="res://sounds/music/loop_placeholder.ogg" id="13_fmq6n"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gpifv"]
+panorama = ExtResource("5_eqey1")
+filter = false
+
+[sub_resource type="Sky" id="Sky_egxua"]
+sky_material = SubResource("PanoramaSkyMaterial_gpifv")
+
+[sub_resource type="Environment" id="Environment_ufbcu"]
+background_mode = 2
+sky = SubResource("Sky_egxua")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.002
+volumetric_fog_emission = Color(0.858824, 0.815686, 0, 1)
+volumetric_fog_emission_energy = 0.4
+
+[sub_resource type="Curve" id="Curve_bbnqs"]
+_data = [Vector2(0.0215054, 0), 0.0, 0.0, 0, 0, Vector2(0.480287, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_drtuf"]
+curve = SubResource("Curve_bbnqs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_canuw"]
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_box_extents = Vector3(20, 0.1, 7.64)
+velocity_pivot = Vector3(1, 0, 0)
+gravity = Vector3(0, 0, 1)
+attractor_interaction_enabled = false
+alpha_curve = SubResource("CurveTexture_drtuf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p7f0n"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("12_x6eh4")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_waus6"]
+material = SubResource("StandardMaterial3D_p7f0n")
+size = Vector2(40, 40)
+
+[node name="Level" type="Node"]
+
+[node name="WorldGlobalFeatures" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldGlobalFeatures"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -10, 10, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="WorldGlobalFeatures"]
+environment = SubResource("Environment_ufbcu")
+
+[node name="WorldLocalFeatures" type="Node3D" parent="."]
+
+[node name="moon" parent="WorldLocalFeatures" instance=ExtResource("9_w81ji")]
+transform = Transform3D(-1.08057, 0, -4.03274, 0, 4.175, 0, 4.03274, 0, -1.08057, -37.66, 24.486, -66.347)
+
+[node name="SpaceStation" parent="WorldLocalFeatures/moon" instance=ExtResource("10_h7n0m")]
+transform = Transform3D(-0.0259366, -0.0273314, 0.113931, -0.0870449, 0.0826025, 0, -0.078425, -0.0826426, -0.0376791, -0.933, 3.282, -2.235)
+
+[node name="sabbia" parent="WorldLocalFeatures" instance=ExtResource("3_cut6m")]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, -6.49467, 0)
+
+[node name="rocce" type="Node3D" parent="WorldLocalFeatures"]
+
+[node name="complesso1" type="Node3D" parent="WorldLocalFeatures/rocce"]
+
+[node name="roccia_1" parent="WorldLocalFeatures/rocce/complesso1" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(7.73842, 0, 9.61503, 0, 12.3423, 0, -9.61503, 0, 7.73842, -39.7809, -11.0047, -28.9343)
+
+[node name="roccia_2" parent="WorldLocalFeatures/rocce/complesso1" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(11.6197, 0, -4.16113, 0, 12.3423, 0, 4.16113, 0, 11.6197, -58.6694, -11.0047, -15.3125)
+
+[node name="roccia_3" parent="WorldLocalFeatures/rocce/complesso1" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(17.3519, 0, -6.21392, 0, 18.431, 0, 6.21392, 0, 17.3519, -58.6694, -13.8169, -48.7366)
+
+[node name="roccia_4" parent="WorldLocalFeatures/rocce/complesso1" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(9.4, 0, 0, 0, 8.62036, -3.74824, 0, 3.74824, 8.62036, -46.8717, 0.516272, -10.3238)
+
+[node name="complesso2" type="Node3D" parent="WorldLocalFeatures/rocce"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101.784, 0, -58.9163)
+
+[node name="roccia_1" parent="WorldLocalFeatures/rocce/complesso2" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(7.73842, 0, 9.61503, 0, 12.3423, 0, -9.61503, 0, 7.73842, -39.7809, -11.0047, -28.9343)
+
+[node name="roccia_2" parent="WorldLocalFeatures/rocce/complesso2" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(11.6197, 0, -4.16113, 0, 12.3423, 0, 4.16113, 0, 11.6197, -58.6694, -11.0047, -15.3125)
+
+[node name="roccia_3" parent="WorldLocalFeatures/rocce/complesso2" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(17.3519, 0, -6.21392, 0, 18.431, 0, 6.21392, 0, 17.3519, -58.6694, -13.8169, -48.7366)
+
+[node name="roccia_4" parent="WorldLocalFeatures/rocce/complesso2" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(9.4, 0, 0, 0, 8.62036, -3.74824, 0, 3.74824, 8.62036, -46.8717, 0.516272, -10.3238)
+
+[node name="complesso4" type="Node3D" parent="WorldLocalFeatures/rocce"]
+transform = Transform3D(0.232213, 0, 0, 0, 0.232213, 0, 0, 0, 0.232213, -3.58087, 1.50799, -17.0016)
+
+[node name="roccia_1" parent="WorldLocalFeatures/rocce/complesso4" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(7.73842, 0, 9.61503, 0, 12.3423, 0, -9.61503, 0, 7.73842, -39.7809, -11.0047, -28.9343)
+
+[node name="roccia_2" parent="WorldLocalFeatures/rocce/complesso4" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(11.6197, 0, -4.16113, 0, 12.3423, 0, 4.16113, 0, 11.6197, -58.6694, -11.0047, -15.3125)
+
+[node name="roccia_3" parent="WorldLocalFeatures/rocce/complesso4" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(17.3519, 0, -6.21392, 0, 18.431, 0, 6.21392, 0, 17.3519, -58.6694, -13.8169, -48.7366)
+
+[node name="roccia_4" parent="WorldLocalFeatures/rocce/complesso4" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(9.4, 0, 0, 0, 8.62036, -3.74824, 0, 3.74824, 8.62036, -46.8717, 0.516272, -10.3238)
+
+[node name="complesso3" type="Node3D" parent="WorldLocalFeatures/rocce"]
+transform = Transform3D(-0.999391, 0, -0.0348994, 0, 1, 0, 0.0348994, 0, -0.999391, -119.534, 7.12264, -132.736)
+
+[node name="roccia_1" parent="WorldLocalFeatures/rocce/complesso3" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(7.73842, 0, 9.61503, 0, 12.3423, 0, -9.61503, 0, 7.73842, -39.7809, -11.0047, -28.9343)
+
+[node name="roccia_2" parent="WorldLocalFeatures/rocce/complesso3" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(11.6197, 0, -4.16113, 0, 12.3423, 0, 4.16113, 0, 11.6197, -58.6694, -11.0047, -15.3125)
+
+[node name="roccia_3" parent="WorldLocalFeatures/rocce/complesso3" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(17.3519, 0, -6.21392, 0, 18.431, 0, 6.21392, 0, 17.3519, -58.6694, -13.8169, -48.7366)
+
+[node name="roccia_4" parent="WorldLocalFeatures/rocce/complesso3" instance=ExtResource("11_dhwaj")]
+transform = Transform3D(9.4, 0, 0, 0, 8.62036, -3.74824, 0, 3.74824, 8.62036, -46.8717, 0.516272, -10.3238)
+
+[node name="EmitterSand" type="GPUParticles3D" parent="WorldLocalFeatures"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.933657, -33.4755)
+amount = 6
+lifetime = 20.0
+process_material = SubResource("ParticleProcessMaterial_canuw")
+draw_pass_1 = SubResource("PlaneMesh_waus6")
+
+[node name="TileManager" type="Node3D" parent="WorldLocalFeatures"]
+script = ExtResource("1_chdn7")
+
+[node name="timer_spawn_tile" type="Timer" parent="WorldLocalFeatures/TileManager"]
+autostart = true
+script = ExtResource("2_f8xpn")
+
+[node name="tile_sabbia" parent="WorldLocalFeatures/TileManager" instance=ExtResource("3_cut6m")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+visible = false
+script = ExtResource("4_p40kl")
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="enemy1" parent="Enemies" instance=ExtResource("7_vtj63")]
+transform = Transform3D(1.3221, 0, 0, 0, 1.3221, 0, 0, 0, 1.3221, -3.50391, 3.95025, -15.0244)
+script = ExtResource("8_fpgt0")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="AmbienceDesert" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_kk3on")
+volume_db = -8.667
+
+[node name="musica_loop" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("13_fmq6n")
+
+[connection signal="timeout" from="WorldLocalFeatures/TileManager/timer_spawn_tile" to="WorldLocalFeatures/TileManager" method="_on_timer_spawn_tile_timeout"]
